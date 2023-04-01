@@ -1,0 +1,34 @@
+{
+  "name": "hm-pin-list",
+  "version": "1.0.0",
+  "description": "A program for extracting all pins from Hitman WoA",
+  "main": "build/main.js",
+  "bin": "build/main.js",
+  "scripts": {
+    "start": "node .",
+    "build": "tsc",
+    "dev:build": "tsc -w",
+    "dev:start": "node .",
+    "dev": "concurrently -n w: pnpm:dev:*"
+  },
+  "keywords": [
+    "hitman",
+    "woa",
+    "hitman3",
+    "hitmanwoa",
+    "hitman1",
+    "hitman2"
+  ],
+  "type": "module",
+  "author": "BSh",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "concurrently": "^8.0.1",
+    "pkg": "^5.8.1",
+    "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0"
+  }
+}
