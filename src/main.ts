@@ -33,7 +33,7 @@ async function main() {
     .split('\n')
     .filter(line => !line.startsWith('#')) // Comments
     .map(line => line.trim().split(',')) // Split by ,
-    .map(line => [line[0], line.slice(1).length > 1 ? line.slice(1).join(',') : line[1]]) // Merge right-hand commas
+    .map(line => [line[0], line[1]?.length > 1 ? line.slice(1).join(',') : line[1]]) // Merge right-hand commas
 
   const _pins = JSON.parse(await readFile(pinsJSON, { encoding: 'utf-8' }))
 
@@ -50,15 +50,15 @@ async function main() {
 
     if(pins.input?.length > 0) {
       content += '\n** Input Pins:'
-      content += pins.input.map(pin => `\n- ${pin}`)
+      content += pins.input.map(pin => `\n- ${pin.replace(/,/g, '')}`)
     }
     
     if(pins.output?.length > 0) {
       content += '\n** Output Pins:'
-      content += pins.output.map(pin => `\n- ${pin}`)
+      content += pins.output.map(pin => `\n- ${pin.replace(/,/g, '')}`)
     }
 
-    await writeFile(outputFile, content, { flag: 'a+' })
+    await writeFile(outputFile, content.replace(/,/g, ''), { flag: 'a' })
   }
 }
 
